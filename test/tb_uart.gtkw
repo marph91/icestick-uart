@@ -1,0 +1,46 @@
+[*]
+[*] GTKWave Analyzer v3.3.79 (w)1999-2017 BSI
+[*] Wed Mar 13 22:16:35 2019
+[*]
+[dumpfile] "/home/workspace/vhdl/ir/build/tb_uart.ghw"
+[dumpfile_mtime] "Wed Mar 13 22:13:21 2019"
+[dumpfile_size] 4220363
+[savefile] "/home/workspace/vhdl/ir/tb_uart.gtkw"
+[timestart] 0
+[size] 1257 627
+[pos] -1 -1
+*-30.000000 83000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tb_uart.
+[sst_width] 211
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@28
+top.tb_uart.sl_clk
+top.tb_uart.sl_valid_in_tx
+#{top.tb_uart.slv_data_in_tx[7:0]} top.tb_uart.slv_data_in_tx[7] top.tb_uart.slv_data_in_tx[6] top.tb_uart.slv_data_in_tx[5] top.tb_uart.slv_data_in_tx[4] top.tb_uart.slv_data_in_tx[3] top.tb_uart.slv_data_in_tx[2] top.tb_uart.slv_data_in_tx[1] top.tb_uart.slv_data_in_tx[0]
+#{top.tb_uart.slv_data_out_rx[7:0]} top.tb_uart.slv_data_out_rx[7] top.tb_uart.slv_data_out_rx[6] top.tb_uart.slv_data_out_rx[5] top.tb_uart.slv_data_out_rx[4] top.tb_uart.slv_data_out_rx[3] top.tb_uart.slv_data_out_rx[2] top.tb_uart.slv_data_out_rx[1] top.tb_uart.slv_data_out_rx[0]
+top.tb_uart.sl_valid_out_rx
+@200
+-TX
+@28
+top.tb_uart.dut_tx.isl_valid
+#{top.tb_uart.dut_tx.islv_data[7:0]} top.tb_uart.dut_tx.islv_data[7] top.tb_uart.dut_tx.islv_data[6] top.tb_uart.dut_tx.islv_data[5] top.tb_uart.dut_tx.islv_data[4] top.tb_uart.dut_tx.islv_data[3] top.tb_uart.dut_tx.islv_data[2] top.tb_uart.dut_tx.islv_data[1] top.tb_uart.dut_tx.islv_data[0]
+top.tb_uart.dut_tx.osl_data
+top.tb_uart.dut_tx.int_bit_cnt
+top.tb_uart.dut_tx.int_cycle_cnt
+@200
+-RX
+@28
+top.tb_uart.dut_rx.isl_data
+@29
+top.tb_uart.dut_rx.isl_data_d1
+@28
+#{top.tb_uart.dut_rx.oslv_data[7:0]} top.tb_uart.dut_rx.oslv_data[7] top.tb_uart.dut_rx.oslv_data[6] top.tb_uart.dut_rx.oslv_data[5] top.tb_uart.dut_rx.oslv_data[4] top.tb_uart.dut_rx.oslv_data[3] top.tb_uart.dut_rx.oslv_data[2] top.tb_uart.dut_rx.oslv_data[1] top.tb_uart.dut_rx.oslv_data[0]
+top.tb_uart.dut_rx.sl_receiving
+top.tb_uart.dut_rx.osl_valid
+top.tb_uart.dut_rx.int_bit_cnt
+top.tb_uart.dut_rx.int_cycle_cnt
+[pattern_trace] 1
+[pattern_trace] 0
