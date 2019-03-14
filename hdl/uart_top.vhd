@@ -19,8 +19,8 @@ architecture behavioral of uart_top is
 
 	constant C_CYCLES_PER_BIT : integer := C_QUARTZ_FREQ / C_BAUDRATE;
 
-	signal sl_valid_out_tx 	: std_logic;
-	signal slv_data_out_tx 	: std_logic_vector(C_BITS-1 downto 0);
+	signal sl_valid_out_tx : std_logic;
+	signal slv_data_out_tx : std_logic_vector(C_BITS-1 downto 0);
 
 begin
 	oslv_data_debug <= slv_data_out_tx;
@@ -30,8 +30,8 @@ begin
 		C_CYCLES_PER_BIT => C_CYCLES_PER_BIT
 	)
 	port map (
-		isl_clk 	=> isl_clk,
-		isl_data 	=> isl_data,
+		isl_clk => isl_clk,
+		isl_data => isl_data,
 		oslv_data => slv_data_out_tx,
 		osl_valid => sl_valid_out_tx
 	);

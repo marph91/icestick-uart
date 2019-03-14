@@ -5,3 +5,7 @@ Simple uart sender and receiver for the lattice icestick written in vhdl.
 - constraints: Contains the icestick specific constraints.
 - hdl: Contains the hardware design.
 - test: Contains the testbenches that can be started via sim_uart.sh and an python script to test the design on the icestick.
+
+# TODO
+- add optional parity bit
+- add ressource usage

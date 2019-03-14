@@ -10,15 +10,15 @@ architecture behavioral of tb_uart2 is
 	constant C_QUARTZ_FREQ : integer := 12000000; -- Hz
 	constant C_BAUDRATE : integer := 115200; -- words / s
 	
-	constant C_CLK_PERIOD 	: time := (10**9 / C_QUARTZ_FREQ) * 1 ns;
+	constant C_CLK_PERIOD : time := (10**9 / C_QUARTZ_FREQ) * 1 ns;
 
 	constant C_BITS : integer := 8;
 	constant C_CYCLES_PER_BIT : integer := C_QUARTZ_FREQ / C_BAUDRATE;
 	
-	signal sl_clk 			: std_logic := '0';
+	signal sl_clk : std_logic := '0';
 	signal sl_data_in_uart : std_logic := '0';
-	signal sl_data_out_uart 	: std_logic := '0';
-	signal slv_data_out_debug 	: std_logic_vector(C_BITS-1 downto 0) := (others => '0');
+	signal sl_data_out_uart : std_logic := '0';
+	signal slv_data_out_debug : std_logic_vector(C_BITS-1 downto 0) := (others => '0');
 
 	signal slv_data_out_rx2 : std_logic_vector(C_BITS-1 downto 0) := (others => '0');
 	signal sl_valid_out_rx2	: std_logic := '0';
@@ -40,8 +40,8 @@ begin
 		C_BITS => C_BITS
 	)
 	port map (
-		isl_clk 	=> sl_clk,
-		isl_data 	=> sl_data_in_uart,
+		isl_clk => sl_clk,
+		isl_data => sl_data_in_uart,
 		osl_data => sl_data_out_uart,
 		oslv_data_debug => slv_data_out_debug
 	);
@@ -49,11 +49,11 @@ begin
 	dut_rx2: entity work.uart_rx
 	generic map (
 		C_BITS => C_BITS,
-		C_CYCLES_PER_BIT 	=> C_CYCLES_PER_BIT
+		C_CYCLES_PER_BIT => C_CYCLES_PER_BIT
 	)
 	port map (
-		isl_clk 	=> sl_clk,
-		isl_data 	=> sl_data_out_uart,
+		isl_clk => sl_clk,
+		isl_data => sl_data_out_uart,
 		oslv_data => slv_data_out_rx2,
 		osl_valid => sl_valid_out_rx2
 	);
