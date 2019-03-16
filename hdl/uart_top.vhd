@@ -19,11 +19,12 @@ architecture behavioral of uart_top is
 
 	constant C_CYCLES_PER_BIT : integer := C_QUARTZ_FREQ / C_BAUDRATE;
 
-	signal sl_valid_out_tx : std_logic;
-	signal slv_data_out_tx : std_logic_vector(C_BITS-1 downto 0);
+	signal sl_valid_out_tx : std_logic := '0';
+	signal slv_data_out_tx : std_logic_vector(C_BITS-1 downto 0) := (others => '0');
 
 begin
 	oslv_data_debug <= slv_data_out_tx;
+
 	uart_rx_inst: entity work.uart_rx
 	generic map (
 		C_BITS => C_BITS,
