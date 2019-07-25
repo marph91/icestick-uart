@@ -36,7 +36,7 @@ def test_uart_sim():
             rcv = os.read(master, 1)
             word_rcv = int.from_bytes(rcv, "big")
             print(format(word, "#010b"), format(word_rcv, "#010b"),
-                word == word_rcv)
+                  word == word_rcv)
             time.sleep(0.001)
 
 
