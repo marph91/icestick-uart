@@ -23,12 +23,15 @@ def test_uart():
             ser.write(word.to_bytes(1, "big"))
             rcv = ser.read(1)
             word_rcv = int.from_bytes(rcv, byteorder="big")
-            print(format(word, "#010b"), format(word_rcv, "#010b"),
-                    word == word_rcv)
+            print(
+                format(word, "#010b"),
+                format(word_rcv, "#010b"),
+                word == word_rcv)
             time.sleep(0.001)
 
 
 def test_uart_sim():
+    """Test UART in a pseudo terminal."""
     master, slave = pty.openpty()
     s_name = os.ttyname(slave)
     ser = serial.Serial(s_name)
