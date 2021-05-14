@@ -11,7 +11,7 @@ entity uart_tx is
     isl_valid  : in std_logic;
     islv_data  : in std_logic_vector(C_BITS-1 downto 0);
     osl_ready  : out std_logic;
-    osl_data_n : out std_logic
+    osl_data   : out std_logic
   );
 end entity uart_tx;
 
@@ -19,7 +19,7 @@ architecture rtl of uart_tx is
   signal int_cycle_cnt : integer range 0 to C_CYCLES_PER_BIT-1 := 0;
   signal int_bit_cnt : integer range 0 to C_BITS+2 := 0;
 
-  signal slv_data : std_logic_vector(C_BITS downto 0) := (others => '0');
+  signal slv_data : std_logic_vector(C_BITS + 1 downto 0) := (others => '0');
 
   type t_state is (IDLE, INIT, SEND);
   signal state : t_state;
@@ -30,6 +30,8 @@ begin
     if rising_edge(isl_clk) then
       case state is
         when IDLE =>
+          slv_data(0) <= '1';
+
           if isl_valid = '1' then
             state <= INIT;
           end if;
@@ -37,7 +39,8 @@ begin
         when INIT =>
           int_cycle_cnt <= 0;
           int_bit_cnt <= 0;
-          slv_data <= islv_data & '1';
+          -- Stop bit & data & start bit.
+          slv_data <= '1' & islv_data & '0';
           state <= SEND;
         
         when SEND =>
@@ -46,7 +49,7 @@ begin
           elsif int_bit_cnt < C_BITS+1 then
             int_cycle_cnt <= 0;
             int_bit_cnt <= int_bit_cnt+1;
-            slv_data <= '0' & slv_data(slv_data'LEFT downto 1);
+            slv_data <= '1' & slv_data(slv_data'LEFT downto 1);
           else
             state <= IDLE;
           end if;
@@ -56,5 +59,5 @@ begin
   end process;
 
   osl_ready <= '1' when state = IDLE else '0';
-  osl_data_n <= not slv_data(0); -- low active
+  osl_data  <= slv_data(0);
 end architecture rtl;

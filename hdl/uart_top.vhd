@@ -7,8 +7,8 @@ entity uart_top is
   );
   port (
     isl_clk    : in std_logic;
-    isl_data_n : in std_logic;
-    osl_data_n : out std_logic;
+    isl_data   : in std_logic;
+    osl_data   : out std_logic;
     osl_ready  : out std_logic
   );
 end uart_top;
@@ -29,7 +29,7 @@ begin
   )
   port map (
     isl_clk => isl_clk,
-    isl_data_n => isl_data_n,
+    isl_data => isl_data,
     oslv_data => slv_data_out_tx,
     osl_valid => sl_valid_out_tx
   );
@@ -43,7 +43,7 @@ begin
     isl_clk => isl_clk,
     isl_valid => sl_valid_out_tx,
     islv_data => slv_data_out_tx,
-    osl_data_n => osl_data_n,
+    osl_data => osl_data,
     osl_ready => osl_ready
   );
 end behavioral;

@@ -8,7 +8,7 @@ entity uart_rx is
   );
   port (
     isl_clk    : in std_logic;
-    isl_data_n : in std_logic;
+    isl_data   : in std_logic;
     oslv_data  : out std_logic_vector(C_BITS-1 downto 0);
     osl_valid  : out std_logic
   );
@@ -31,7 +31,7 @@ begin
       case state is
         when IDLE =>
           sl_valid <= '0';
-          if isl_data_n = '0' then
+          if isl_data = '0' then
             -- wait for the start bit
             state <= INIT;
           end if;
@@ -49,9 +49,9 @@ begin
               -- receive data bits
               int_cycle_cnt <= 0;
               int_bit_cnt <= int_bit_cnt+1;
-              slv_data <= not isl_data_n & slv_data(slv_data'LEFT downto 1); -- low active
+              slv_data <= isl_data & slv_data(slv_data'LEFT downto 1);
             end if;
-          elsif isl_data_n = '1' then
+          elsif isl_data = '1' then
             -- wait for the stop bit
             sl_valid <= '1';
             state <= IDLE;

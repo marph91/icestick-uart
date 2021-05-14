@@ -32,7 +32,7 @@ begin
     isl_clk => sl_clk,
     isl_valid => sl_valid_in_tx,
     islv_data => slv_data_in_tx,
-    osl_data_n => sl_data_out_tx
+    osl_data => sl_data_out_tx
   );
 
   dut_rx: entity work.uart_rx
@@ -42,7 +42,7 @@ begin
   )
   port map (
     isl_clk => sl_clk,
-    isl_data_n => sl_data_out_tx,
+    isl_data => sl_data_out_tx,
     oslv_data => slv_data_out_rx,
     osl_valid => sl_valid_out_rx
   );

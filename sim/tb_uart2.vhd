@@ -16,7 +16,7 @@ architecture behavioral of tb_uart2 is
   constant C_CYCLES_PER_BIT : integer := C_QUARTZ_FREQ / C_BAUDRATE;
 
   signal sl_clk : std_logic := '0';
-  signal sl_data_in_uart_n : std_logic := '0';
+  signal sl_data_in_uart : std_logic := '0';
   signal sl_data_out_uart : std_logic := '0';
 
   signal slv_data_out_rx2 : std_logic_vector(C_BITS-1 downto 0) := (others => '0');
@@ -31,8 +31,8 @@ begin
   )
   port map (
     isl_clk => sl_clk,
-    isl_data_n => sl_data_in_uart_n,
-    osl_data_n => sl_data_out_uart
+    isl_data => sl_data_in_uart,
+    osl_data => sl_data_out_uart
   );
 
   dut_rx2: entity work.uart_rx
@@ -42,7 +42,7 @@ begin
   )
   port map (
     isl_clk => sl_clk,
-    isl_data_n => sl_data_out_uart,
+    isl_data => sl_data_out_uart,
     oslv_data => slv_data_out_rx2,
     osl_valid => sl_valid_out_rx2
   );
@@ -60,19 +60,19 @@ begin
     wait for C_CLK_PERIOD;
 
     for i in 0 to 2**C_BITS-1 loop
-      sl_data_in_uart_n <= '1';
+      sl_data_in_uart <= '1';
       slv_input_word <= std_logic_vector(to_unsigned(i, C_BITS));
       wait for C_CLK_PERIOD;
 
-      sl_data_in_uart_n <= '0'; -- start bit
+      sl_data_in_uart <= '0'; -- start bit
       wait for C_CLK_PERIOD * C_CYCLES_PER_BIT;
 
       for j in slv_input_word'REVERSE_RANGE loop
-        sl_data_in_uart_n <= not slv_input_word(j); -- LSB first
+        sl_data_in_uart <= slv_input_word(j); -- LSB first
         wait for C_CLK_PERIOD * C_CYCLES_PER_BIT;
       end loop;
 
-      sl_data_in_uart_n <= '1'; -- stop bit
+      sl_data_in_uart <= '1'; -- stop bit
       wait until sl_valid_out_rx2 = '1';
       assert slv_input_word = slv_data_out_rx2 report to_string(slv_input_word) & " " & to_string(slv_data_out_rx2);
     end loop;
