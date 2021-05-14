@@ -21,7 +21,7 @@ architecture rtl of uart_tx is
 
   signal slv_data : std_logic_vector(C_BITS + 1 downto 0) := (others => '0');
 
-  type t_state is (IDLE, INIT, SEND);
+  type t_state is (IDLE, SEND);
   signal state : t_state;
 
 begin
@@ -31,18 +31,15 @@ begin
       case state is
         when IDLE =>
           slv_data(0) <= '1';
-
-          if isl_valid = '1' then
-            state <= INIT;
-          end if;
-
-        when INIT =>
           int_cycle_cnt <= 0;
           int_bit_cnt <= 0;
-          -- Stop bit & data & start bit.
-          slv_data <= '1' & islv_data & '0';
-          state <= SEND;
-        
+
+          if isl_valid = '1' then
+            state <= SEND;
+            -- Stop bit & data & start bit.
+            slv_data <= '1' & islv_data & '0';
+          end if;
+
         when SEND =>
           if int_cycle_cnt < C_CYCLES_PER_BIT-1 then
             int_cycle_cnt <= int_cycle_cnt+1;
