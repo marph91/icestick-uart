@@ -41,9 +41,9 @@ begin
           end if;
 
         when SEND =>
-          if int_cycle_cnt < C_CYCLES_PER_BIT-1 then
+          if int_cycle_cnt /= C_CYCLES_PER_BIT-1 then
             int_cycle_cnt <= int_cycle_cnt+1;
-          elsif int_bit_cnt < C_BITS+1 then
+          elsif int_bit_cnt /= C_BITS+1 then
             int_cycle_cnt <= 0;
             int_bit_cnt <= int_bit_cnt+1;
             slv_data <= '1' & slv_data(slv_data'LEFT downto 1);

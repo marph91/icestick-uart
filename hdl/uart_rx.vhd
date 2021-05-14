@@ -42,8 +42,8 @@ begin
           state <= RECEIVE;
 
         when RECEIVE =>
-          if int_bit_cnt < C_BITS+1 then
-            if int_cycle_cnt < C_CYCLES_PER_BIT-1 then
+          if int_bit_cnt /= C_BITS+1 then
+            if int_cycle_cnt /= C_CYCLES_PER_BIT-1 then
               int_cycle_cnt <= int_cycle_cnt+1;
             else
               -- receive data bits

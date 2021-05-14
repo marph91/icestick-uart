@@ -22,13 +22,13 @@ When developing, two communication options were used:
   - Type something. The received data from the icestick should be displayed in the terminal.
 - via python: see `sim/uart_tx.py`
 
-## Ressource usage
+## Resource usage
 
 For the default configuration, the following resources are needed:
 
 resource | absolute usage | relative usage
 -------------|----------:|---:
-ICESTORM_LC  | 109/ 1280 |  8%
+ICESTORM_LC  |  83/ 1280 |  6%
 ICESTORM_RAM |   0/   16 |  0%
 SB_IO        |   4/  112 |  3%
 SB_GB        |   1/    8 | 12%
